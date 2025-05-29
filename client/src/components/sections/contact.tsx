@@ -39,11 +39,11 @@ export function ContactSection() {
         'service_i0jamfh', // Your service ID
         'template_fmjkefj', // Your template ID
         {
-          from_name: data.name,
-          from_email: data.email,
-          subject: data.subject,
+          user_name: data.name,
+          user_email: data.email,
+          subject: data.subject || 'New Portfolio Contact',
           message: data.message,
-          to_email: 'hananahberhe@gmail.com',
+          reply_to: data.email,
         }
       );
       
