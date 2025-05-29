@@ -15,9 +15,9 @@
   --card-foreground: 222 47% 11%; /* #1E293B */
   --border: 214 13% 91%; /* #E2E8F0 */
   --input: 214 13% 91%; /* #E2E8F0 */
-  --primary: 221 83% 53%; /* #3B82F6 */
+  --primary: 270 50% 75%; /* Baby Purple */
   --primary-foreground: 210 40% 98%; /* #F8FAFC */
-  --secondary: 215 28% 17%; /* #1E40AF */
+  --secondary: 270 40% 65%; /* Darker Baby Purple */
   --secondary-foreground: 210 40% 98%; /* #F8FAFC */
   --accent: 43 96% 56%; /* #F59E0B */
   --accent-foreground: 222 47% 11%; /* #1E293B */
@@ -38,9 +38,9 @@
   --card-foreground: 210 40% 98%; /* #F8FAFC */
   --border: 217 33% 17%; /* #1E293B */
   --input: 217 33% 17%; /* #1E293B */
-  --primary: 221 83% 53%; /* #3B82F6 */
-  --primary-foreground: 210 40% 98%; /* #F8FAFC */
-  --secondary: 217 33% 17%; /* #1E293B */
+  --primary: 270 50% 75%; /* Baby Purple */
+  --primary-foreground: 222 84% 5%; /* #0F172A */
+  --secondary: 270 40% 65%; /* Darker Baby Purple */
   --secondary-foreground: 210 40% 98%; /* #F8FAFC */
   --accent: 43 96% 56%; /* #F59E0B */
   --accent-foreground: 222 84% 5%; /* #0F172A */
