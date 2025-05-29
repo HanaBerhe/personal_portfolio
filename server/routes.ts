@@ -1,8 +1,10 @@
 import type { Express } from "express";
+import express from "express";
 import { createServer, type Server } from "http";
 import { z } from "zod";
 import { sendEmail } from "./email";
 import path from "path";
+import fs from "fs";
 
 const contactSchema = z.object({
   name: z.string().min(2),
@@ -56,13 +58,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Serve static files from public directory  
+  app.use('/resume', express.static(path.join(process.cwd(), 'public/resume')));
+
   // Resume download endpoint
   app.get("/api/resume/download", (req, res) => {
-    res.json({
-      success: true,
-      message: "Resume download would start here",
-      downloadUrl: "/resume/Hana_Berhe_Girmay_Resume.pdf"
-    });
+    const resumePath = path.join(process.cwd(), 'public/resume/Hana_Berhe_Girmay_Resume.pdf');
+    
+    if (fs.existsSync(resumePath)) {
+      res.download(resumePath, 'Hana_Berhe_Girmay_Resume.pdf', (err) => {
+        if (err) {
+          console.error('Resume download error:', err);
+          res.status(500).json({
+            success: false,
+            message: "Error downloading resume"
+          });
+        }
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        message: "Resume file not found. Please upload your resume PDF to the public/resume folder."
+      });
+    }
   });
 
   // Health check endpoint
