@@ -52,22 +52,39 @@ export function ServicesSection() {
                     {service.title === "Translation Services" ? (
                       <>
                         <div className="space-y-4">
-                          {service.languages?.map((language, langIndex) => (
-                            <div
-                              key={langIndex}
-                              className="flex items-center justify-between p-4 bg-muted rounded-xl"
-                            >
-                              <div className="flex items-center space-x-3">
-                                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                                <span className="text-foreground font-medium">
-                                  English ⟷ {language}
-                                </span>
-                              </div>
-                              <span className="text-green-600 dark:text-green-400 font-medium">
-                                {language === "Amharic" ? "Native" : "Fluent"}
+                          <div className="flex items-center justify-between p-4 bg-muted rounded-xl">
+                            <div className="flex items-center space-x-3">
+                              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                              <span className="text-foreground font-medium">
+                                Amharic ⟷ English
                               </span>
                             </div>
-                          ))}
+                            <span className="text-green-600 dark:text-green-400 font-medium">
+                              Native
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-between p-4 bg-muted rounded-xl">
+                            <div className="flex items-center space-x-3">
+                              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                              <span className="text-foreground font-medium">
+                                Amharic ⟷ Affan Oromo
+                              </span>
+                            </div>
+                            <span className="text-green-600 dark:text-green-400 font-medium">
+                              Fluent
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-between p-4 bg-muted rounded-xl">
+                            <div className="flex items-center space-x-3">
+                              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                              <span className="text-foreground font-medium">
+                                Amharic ⟷ Aff-Somali
+                              </span>
+                            </div>
+                            <span className="text-green-600 dark:text-green-400 font-medium">
+                              Fluent
+                            </span>
+                          </div>
                         </div>
 
                         <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-xl">

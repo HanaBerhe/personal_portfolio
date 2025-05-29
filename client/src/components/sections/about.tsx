@@ -57,10 +57,19 @@ export function AboutSection() {
                   <GraduationCap className="text-primary mr-3 h-5 w-5" />
                   Education
                 </h3>
-                <div className="space-y-2">
-                  <p className="font-semibold text-foreground">{personalInfo.education.degree}</p>
-                  <p className="text-muted-foreground">{personalInfo.education.institution}</p>
-                  <p className="text-sm text-muted-foreground">Graduated: {personalInfo.education.graduationDate}</p>
+                <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+                  <div className="flex-shrink-0">
+                    <img
+                      src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200"
+                      alt="Graduation ceremony at Addis Ababa University"
+                      className="w-24 h-24 rounded-full object-cover border-4 border-primary/20"
+                    />
+                  </div>
+                  <div className="text-center md:text-left">
+                    <p className="font-semibold text-foreground">{personalInfo.education.degree}</p>
+                    <p className="text-muted-foreground">{personalInfo.education.institution}</p>
+                    <p className="text-sm text-muted-foreground">Graduated: {personalInfo.education.graduationDate}</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
