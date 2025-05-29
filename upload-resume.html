@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Resume - Hana's Portfolio</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+        .upload-area { border: 2px dashed #ccc; padding: 40px; text-align: center; margin: 20px 0; }
+        .upload-area:hover { border-color: #999; }
+        button { background: #b794f6; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        .instructions { background: #f0f8ff; padding: 15px; border-radius: 5px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>Upload Your Resume PDF</h1>
+    
+    <div class="instructions">
+        <h3>Instructions:</h3>
+        <ol>
+            <li>Make sure your resume is in PDF format</li>
+            <li>Name your file: <strong>Hana_Berhe_Girmay_Resume.pdf</strong></li>
+            <li>Upload it to the <code>public/resume/</code> folder in your project</li>
+            <li>The download button on your portfolio will then serve your actual resume</li>
+        </ol>
+    </div>
+
+    <div class="upload-area">
+        <input type="file" id="resumeFile" accept=".pdf" />
+        <p>Select your resume PDF file</p>
+        <button onclick="uploadFile()">Upload Resume</button>
+    </div>
+
+    <script>
+        function uploadFile() {
+            const fileInput = document.getElementById('resumeFile');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                alert('Please select a PDF file first');
+                return;
+            }
+            
+            if (file.type !== 'application/pdf') {
+                alert('Please select a PDF file');
+                return;
+            }
+            
+            // For now, just show instructions since we need manual upload
+            alert('Please manually copy your PDF file to the public/resume/ folder and name it "Hana_Berhe_Girmay_Resume.pdf"');
+        }
+    </script>
+</body>
+</html>

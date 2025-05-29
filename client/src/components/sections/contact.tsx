@@ -81,7 +81,14 @@ export function ContactSection() {
 
   const handleDownloadResume = async () => {
     try {
-      await apiRequest("GET", "/api/resume/download");
+      // Direct download link approach
+      const link = document.createElement('a');
+      link.href = '/api/resume/download';
+      link.download = 'Hana_Berhe_Girmay_Resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
       toast({
         title: "Download started",
         description: "Your resume download has been initiated.",
