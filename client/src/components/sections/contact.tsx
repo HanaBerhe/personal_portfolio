@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Mail, Linkedin, Github, Phone, Download, Loader2 } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
+import emailjs from '@emailjs/browser';
 
 interface ContactForm {
   name: string;
@@ -31,7 +31,23 @@ export function ContactSection() {
 
   const contactMutation = useMutation({
     mutationFn: async (data: ContactForm) => {
-      return await apiRequest("POST", "/api/contact", data);
+      // Initialize EmailJS with your public key
+      emailjs.init('wv3fyhLrqlIUwzWQB');
+      
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        'service_i0jamfh', // Your service ID
+        'template_fmjkefj', // Your template ID
+        {
+          from_name: data.name,
+          from_email: data.email,
+          subject: data.subject,
+          message: data.message,
+          to_email: 'hananahberhe@gmail.com',
+        }
+      );
+      
+      return result;
     },
     onSuccess: () => {
       toast({
@@ -40,7 +56,8 @@ export function ContactSection() {
       });
       setFormData({ name: "", email: "", subject: "", message: "" });
     },
-    onError: () => {
+    onError: (error) => {
+      console.error('EmailJS error:', error);
       toast({
         title: "Error",
         description: "Failed to send message. Please try again.",
