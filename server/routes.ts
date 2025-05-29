@@ -1,39 +1,25 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import nodemailer from "nodemailer";
-import { z } from "zod";
+import { storage } from "./storage";
+import { insertContactSchema } from "@shared/schema";
+import path from "path";
+import { fileURLToPath } from "url";
 
-const contactSchema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
-  subject: z.string().optional(),
-  message: z.string().min(10),
-});
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  
-  // Contact form submission endpoint
+  // Contact form submission
   app.post("/api/contact", async (req, res) => {
     try {
-      const validatedData = contactSchema.parse(req.body);
-      
-      // In a real implementation, you would send an email here
-      // For now, we'll just log the submission and return success
-      console.log("Contact form submission:", validatedData);
-      
-      // Simulate email sending delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      res.json({ 
-        success: true, 
-        message: "Thank you for your message! I'll get back to you soon." 
-      });
-      
+      const validatedData = insertContactSchema.parse(req.body);
+      const contact = await storage.createContact(validatedData);
+      res.json({ success: true, message: "Contact form submitted successfully!" });
     } catch (error) {
       console.error("Contact form error:", error);
       res.status(400).json({ 
         success: false, 
-        message: "Invalid form data. Please check your inputs." 
+        message: "Failed to submit contact form. Please try again." 
       });
     }
   });
@@ -41,17 +27,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Resume download endpoint
   app.get("/api/resume/download", (req, res) => {
     // In a real implementation, this would serve the actual resume file
-    // For now, we'll just return a success response
-    res.json({
-      success: true,
-      message: "Resume download would start here",
-      downloadUrl: "/resume/Hana_Berhe_Girmay_Resume.pdf"
+    // For now, we'll simulate the download by sending a response
+    const resumePath = path.join(__dirname, "../assets/Hana_Berhe_Girmay_Resume.pdf");
+    
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename="Hana_Berhe_Girmay_Resume.pdf"');
+    
+    // Since we don't have an actual PDF file, we'll send a message
+    res.status(200).json({ 
+      message: "Resume download initiated", 
+      filename: "Hana_Berhe_Girmay_Resume.pdf" 
     });
-  });
-
-  // Health check endpoint
-  app.get("/api/health", (req, res) => {
-    res.json({ status: "healthy", timestamp: new Date().toISOString() });
   });
 
   const httpServer = createServer(app);

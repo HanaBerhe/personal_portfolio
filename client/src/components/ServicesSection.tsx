@@ -6,9 +6,9 @@ import { Languages, GraduationCap, Globe, FileText, Calculator, BookOpen, Code, 
 
 export default function ServicesSection() {
   const translationLanguages = [
-    { from: "English", to: "Amharic", level: "Native" },
-    { from: "English", to: "Affan Oromo", level: "Fluent" },
-    { from: "English", to: "Aff-Somali", level: "Fluent" }
+    { from: "Amharic", to: "English", level: "Native" },
+    { from: "Amharic", to: "Affan Oromo", level: "Fluent" },
+    { from: "Amharic", to: "Aff-Somali", level: "Fluent" }
   ];
 
   const tutoringSubjects = [
